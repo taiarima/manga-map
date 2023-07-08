@@ -34,6 +34,21 @@ body {
   display: flex;
 }
 
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup span {
+  margin: 2px 0px;
+}
+
+.manga-cover {
+  width: 200px;
+  margin: 5px auto;
+}
+
 /* GENERAL */
 a:link,
 a:visited {
