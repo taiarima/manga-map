@@ -34,6 +34,11 @@ body {
   display: flex;
 }
 
+.japanese-title {
+  font-family: "Potta One", cursive;
+  margin-bottom: -50px;
+}
+
 .popup {
   display: flex;
   flex-direction: column;
