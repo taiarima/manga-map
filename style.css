@@ -97,6 +97,17 @@ h2 {
   font-size: large;
 }
 
+.radio-search {
+  display: flex;
+  justify-content: space-around;
+}
+
+.radio-search > * {
+  padding: 5px;
+  font-size: large;
+  font-family: var(--font-family);
+}
+
 /* SIDEBAR */
 .sidebar {
   flex-basis: 50rem;
@@ -145,6 +156,14 @@ h2 {
 /* This will remove the border from the last child element of .favorites-item */
 .favorites-item > *:first-child {
   border-left: none;
+}
+
+.no-results-msg {
+  background-color: #2d3439;
+  border: solid 2px darkslateblue;
+  font-size: large;
+  font-family: var(--font-family);
+  text-align: center;
 }
 
 .manga-cover-list {

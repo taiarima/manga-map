@@ -42,11 +42,34 @@
           class="search-input"
           placeholder="Search by title, author, location, or keyword"
         />
+        <div class="radio-search">
+          <label>
+            <input type="radio" name="search-type" value="all" checked />
+            All
+          </label>
+          <label>
+            <input type="radio" name="search-type" value="title" />
+            Title
+          </label>
+          <label>
+            <input type="radio" name="search-type" value="author" />
+            Author
+          </label>
+          <label>
+            <input type="radio" name="search-type" value="locationName" />
+            Location
+          </label>
+          <label>
+            <input type="radio" name="search-type" value="summary" />
+            Keyword
+          </label>
+        </div>
         <button class="search-button">Search</button>
       </div>
       <div class="search-results"></div>
       <div class="favorites-container hidden">
-        <h2>Favorites:</h2>
+        <h2 class="favorites-label">Favorites:</h2>
+        <h2>Search Results:</h2>
         <div class="favorites-list"></div>
       </div>
       <p class="copyright">
