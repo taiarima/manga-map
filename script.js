@@ -3,6 +3,15 @@
 const favoritesList = document.querySelector(".favorites-list");
 const favoritesContainer = document.querySelector(".favorites-container");
 
+const resultsList = document.querySelector(".results-list");
+const resultsContainer = document.querySelector(".results-container");
+
+const favoritesTab = document.querySelector(".favorites-tab");
+const searchTab = document.querySelector(".search-tab");
+
+const favoritesPane = document.querySelector(".favorites-pane");
+const resultsPane = document.querySelector(".results-pane");
+
 class App {
   #map;
   #currentPopId;
@@ -15,7 +24,9 @@ class App {
     this._addFavoriteListener();
     this._addToFavorites = this._addToFavorites.bind(this);
     favoritesList.addEventListener("click", this._moveMapToManga.bind(this));
-    this.#map.on("popupopen", this._addPopupListener.bind(this));
+    resultsList.addEventListener("click", this._moveMapToManga.bind(this));
+    this.#map.on("popupopen", this._popUpListener.bind(this));
+    initializeLists(false);
   }
 
   _startMap() {
@@ -84,6 +95,20 @@ class App {
   }
 
   _addToFavorites(popup) {
+    if (this.#favorites.length == 0) {
+      while (favoritesList.firstChild) {
+        favoritesList.removeChild(favoritesList.firstChild);
+      }
+    }
+
+    // Switch to favorites tab if not currently active
+    if (!favoritesTab.classList.contains("active")) {
+      favoritesTab.classList.add("active");
+      searchTab.classList.remove("active");
+      favoritesPane.classList.add("active");
+      resultsPane.classList.remove("active");
+    }
+
     this.#favorites.push(this.#currentPopId);
 
     favoritesContainer.classList.remove("hidden");
@@ -91,6 +116,7 @@ class App {
     // Create a new div for the item
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("favorites-item");
+    itemDiv.classList.add("active");
 
     // Add an id for use with class selection later
     itemDiv.classList.add(`id-${this.#currentPopId}`);
@@ -127,13 +153,18 @@ class App {
     itemToRemove.remove();
 
     if (this.#favorites.length == 0) {
-      favoritesContainer.classList.add("hidden");
+      initializeLists(true);
     }
   }
 
   _moveMapToManga(e) {
     const mangaToFind = e.target.closest(".favorites-item");
-    if (!mangaToFind) return;
+    if (!mangaToFind || mangaToFind.classList.contains("active")) return;
+
+    const favoriteItems = document.querySelectorAll(".favorites-item");
+    favoriteItems.forEach((item) => item.classList.remove("active"));
+
+    mangaToFind.classList.add("active");
 
     const mangaTitle = mangaToFind
       .querySelector("span")
@@ -150,6 +181,12 @@ class App {
 
     // Open the popup at the location
     this.#markerMap.get(manga.coords.join(",")).openPopup();
+    if (mangaToFind.parentElement.classList.contains("favorites-list")) {
+      const star = document.querySelector(".star");
+      star.setAttribute("data-checked", "true");
+      star.textContent = "⭐";
+      star.setAttribute("data-title", "Remove from favorites");
+    }
   }
 
   _findID(element) {
@@ -161,7 +198,28 @@ class App {
     return null;
   }
 
-  _addPopupListener(e) {
+  _popUpListener(e) {
+    this._highlightFavorite(e);
+    this._setStar(e);
+  }
+
+  _highlightFavorite(e) {
+    const favoriteItems = document.querySelectorAll(".favorites-item");
+
+    // Timer necessary because otherwise active class gets immediately removed by click
+    setTimeout(() => {
+      favoriteItems.forEach((item) => {
+        if (
+          item.querySelector("span").outerText ==
+          e.popup._wrapper.querySelector("span").outerText
+        ) {
+          item.classList.add("active");
+        }
+      });
+    }, 10);
+  }
+
+  _setStar(e) {
     this.#currentPopId = e.popup._leaflet_id;
     const star = e.popup.getElement().querySelector(".star");
     const isFavorite = this.#favorites.includes(this.#currentPopId);
@@ -175,46 +233,6 @@ class App {
       star.setAttribute("data-title", "Add to favorites");
     }
   }
-
-  addSearchResults(resultsArray) {
-    favoritesContainer.classList.remove("hidden");
-
-    if (resultsArray.length == 0) {
-      const noResultsMessage = document.createElement("div");
-      noResultsMessage.classList.add("no-results-msg");
-      noResultsMessage.textContent = "No results found.";
-      favoritesList.appendChild(noResultsMessage);
-      return;
-    }
-
-    resultsArray.forEach((manga) => {
-      const itemDiv = document.createElement("div");
-      itemDiv.classList.add("favorites-item");
-
-      const image = document.createElement("img");
-      image.src = manga.image;
-      image.classList.add("manga-cover-list");
-
-      const title = document.createElement("span");
-      title.textContent = manga.title;
-
-      const author = document.createElement("span");
-      author.textContent = manga.author;
-
-      const location = document.createElement("span");
-      location.textContent = manga.locationName;
-
-      // Append everything to the item div
-      itemDiv.appendChild(image);
-      itemDiv.appendChild(title);
-      itemDiv.appendChild(author);
-      itemDiv.appendChild(location);
-
-      favoritesList.appendChild(itemDiv);
-    });
-
-    favoritesList.scrollTop = favoritesList.scrollHeight;
-  }
 }
 
 const app = new App();
@@ -226,6 +244,15 @@ const searchInput = document.querySelector(".search-input");
 const searchTypeRadios = document.querySelectorAll(".radio-search input");
 const searchButton = document.querySelector(".search-button");
 
+searchTypeRadios.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    // If search input field is not empty, perform search
+    if (searchInput.value.trim() !== "") {
+      performSearch();
+    }
+  });
+});
+
 // Define an event listener for the search button
 searchButton.addEventListener("click", performSearch);
 searchInput.addEventListener("keyup", function (event) {
@@ -236,6 +263,14 @@ searchInput.addEventListener("keyup", function (event) {
 
 // Function to perform the search
 function performSearch() {
+  // Switch to search tab if not currently active
+  if (favoritesTab.classList.contains("active")) {
+    favoritesTab.classList.remove("active");
+    searchTab.classList.add("active");
+    favoritesPane.classList.remove("active");
+    resultsPane.classList.add("active");
+  }
+
   // Get the search term and search type
   const searchTerm = searchInput.value.toLowerCase().trim();
   const searchType = document.querySelector(
@@ -256,6 +291,88 @@ function performSearch() {
   });
 
   // Display the search results (you can modify this part based on your needs)
-  console.log(searchResults);
-  app.addSearchResults(searchResults);
+  addSearchResults(searchResults);
 }
+
+function addSearchResults(resultsArray) {
+  while (resultsList.firstChild) {
+    resultsList.removeChild(resultsList.firstChild);
+  }
+
+  if (resultsArray.length == 0) {
+    const noResultsMessage = document.createElement("div");
+    noResultsMessage.classList.add("no-results-msg");
+    noResultsMessage.textContent = "No results found.";
+    resultsList.appendChild(noResultsMessage);
+    return;
+  }
+
+  resultsArray.forEach((manga) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("favorites-item");
+
+    const image = document.createElement("img");
+    image.src = manga.image;
+    image.classList.add("manga-cover-list");
+
+    const title = document.createElement("span");
+    title.textContent = "Title: " + manga.title;
+
+    const author = document.createElement("span");
+    author.textContent = "Author: " + manga.author;
+
+    const location = document.createElement("span");
+    location.textContent = "Setting: " + manga.locationName;
+
+    // Append everything to the item div
+    itemDiv.appendChild(image);
+    itemDiv.appendChild(title);
+    itemDiv.appendChild(author);
+    itemDiv.appendChild(location);
+
+    resultsList.appendChild(itemDiv);
+  });
+}
+
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabPanes = document.querySelectorAll(".tab-pane");
+
+// Add event listeners to tab buttons
+tabButtons.forEach((tabButton) => {
+  tabButton.addEventListener("click", () => {
+    const targetId = tabButton.getAttribute("data-target");
+
+    // Remove "active" class from all tab buttons and tab panes
+    tabButtons.forEach((button) => button.classList.remove("active"));
+    tabPanes.forEach((pane) => pane.classList.remove("active"));
+
+    // Add "active" class to the clicked tab button and corresponding tab pane
+    tabButton.classList.add("active");
+    document.getElementById(targetId).classList.add("active");
+  });
+});
+
+function initializeLists(onlyResetFavorites) {
+  if (!onlyResetFavorites) {
+    const noResultsMessage = document.createElement("div");
+    noResultsMessage.classList.add("no-results-msg");
+    noResultsMessage.textContent =
+      "Use the search bar above to search for a manga.";
+    resultsList.appendChild(noResultsMessage);
+  }
+
+  const noFavoritesMsg = document.createElement("div");
+  noFavoritesMsg.classList.add("no-results-msg");
+  noFavoritesMsg.textContent =
+    "Explore manga and create a favorites list by clicking the white button in the top left of a manga window.";
+  favoritesList.appendChild(noFavoritesMsg);
+}
+
+// Listen to click events on the document to remove the "active" class from selected manga
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".favorites-item") && !e.target.closest(".star")) {
+    document.querySelectorAll(".favorites-item").forEach((item) => {
+      item.classList.remove("active");
+    });
+  }
+});
