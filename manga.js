@@ -147,7 +147,7 @@ const cookingPapa = new manga(
   "Tochi Ueyama",
   "November 1984 - Present",
   "Cooking Papa follows the story of Kazumi Araiwa, a salaryman who excels at cooking, creating delicious dishes and solving people's dietary problems with food.",
-  "manga-covers/cooking_papa_cover.jpg",
+  "manga-covers/cooking_papa_cover_fix.jpg",
   [33.5902, 130.4017],
   "Fukuoka, Japan"
 );
