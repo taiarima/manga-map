@@ -1,5 +1,6 @@
 "use strict";
 
+// Selecting elements
 const favoritesList = document.querySelector(".favorites-list");
 const favoritesContainer = document.querySelector(".favorites-container");
 
@@ -12,6 +13,14 @@ const searchTab = document.querySelector(".search-tab");
 const favoritesPane = document.querySelector(".favorites-pane");
 const resultsPane = document.querySelector(".results-pane");
 
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabPanes = document.querySelectorAll(".tab-pane");
+
+const searchInput = document.querySelector(".search-input");
+const searchTypeRadios = document.querySelectorAll(".radio-search input");
+const searchButton = document.querySelector(".search-button");
+
+// App class that handles map and all related methods
 class App {
   #map;
   #currentPopId;
@@ -26,7 +35,8 @@ class App {
     favoritesList.addEventListener("click", this._moveMapToManga.bind(this));
     resultsList.addEventListener("click", this._moveMapToManga.bind(this));
     this.#map.on("popupopen", this._popUpListener.bind(this));
-    initializeLists(false);
+    this._restoreFavoritesFromLocalStorage();
+    setSearchPromptText();
   }
 
   _startMap() {
@@ -119,7 +129,7 @@ class App {
     itemDiv.classList.add("active");
 
     // Add an id for use with class selection later
-    itemDiv.classList.add(`id-${this.#currentPopId}`);
+    itemDiv.classList.add(this.#currentPopId);
 
     // Extract and clone the necessary information from the popup
     const img = popup.querySelector(".manga-cover").cloneNode(true);
@@ -139,6 +149,7 @@ class App {
 
     favoritesList.appendChild(itemDiv);
     favoritesList.scrollTop = favoritesList.scrollHeight;
+    this._saveFavoritesToLocalStorage();
   }
 
   _removeFromFavorites() {
@@ -147,14 +158,14 @@ class App {
       this.#favorites.splice(index, 1);
     }
 
-    const itemToRemove = favoritesList.querySelector(
-      `.id-${this.#currentPopId}`
-    );
+    const itemToRemove = favoritesList.querySelector(`.${this.#currentPopId}`);
     itemToRemove.remove();
 
     if (this.#favorites.length == 0) {
-      initializeLists(true);
+      setFavoritesEmptyText();
     }
+
+    this._saveFavoritesToLocalStorage();
   }
 
   _moveMapToManga(e) {
@@ -220,7 +231,9 @@ class App {
   }
 
   _setStar(e) {
-    this.#currentPopId = e.popup._leaflet_id;
+    this.#currentPopId =
+      "id-" + e.popup._latlng.lat.toString().replace(/\./g, "");
+
     const star = e.popup.getElement().querySelector(".star");
     const isFavorite = this.#favorites.includes(this.#currentPopId);
     if (isFavorite) {
@@ -233,35 +246,38 @@ class App {
       star.setAttribute("data-title", "Add to favorites");
     }
   }
+
+  _saveFavoritesToLocalStorage() {
+    localStorage.setItem(
+      "favoritesList",
+      JSON.stringify(favoritesList.innerHTML)
+      // JSON.stringify("")
+    );
+  }
+
+  _restoreFavoritesFromLocalStorage() {
+    const restoredFavorites = JSON.parse(localStorage.getItem("favoritesList"));
+    if (!restoredFavorites) {
+      setFavoritesEmptyText();
+      return;
+    }
+    favoritesList.innerHTML += restoredFavorites;
+    const favoriteItems = document.querySelectorAll(".favorites-item");
+
+    favoriteItems.forEach((item) => {
+      const id = this._findID(item);
+      this.#favorites.push(id);
+      item.classList.remove("active");
+    });
+  }
 }
 
+// Instantiate the app
 const app = new App();
 
-// Search Functionality
-
-// Get the necessary elements
-const searchInput = document.querySelector(".search-input");
-const searchTypeRadios = document.querySelectorAll(".radio-search input");
-const searchButton = document.querySelector(".search-button");
-
-searchTypeRadios.forEach((radio) => {
-  radio.addEventListener("change", () => {
-    // If search input field is not empty, perform search
-    if (searchInput.value.trim() !== "") {
-      performSearch();
-    }
-  });
-});
-
-// Define an event listener for the search button
-searchButton.addEventListener("click", performSearch);
-searchInput.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    performSearch();
-  }
-});
-
-// Function to perform the search
+///////////////////////////////////////
+// Functions for Search Functionality//
+///////////////////////////////////////
 function performSearch() {
   // Switch to search tab if not currently active
   if (favoritesTab.classList.contains("active")) {
@@ -334,10 +350,41 @@ function addSearchResults(resultsArray) {
   });
 }
 
-const tabButtons = document.querySelectorAll(".tab-button");
-const tabPanes = document.querySelectorAll(".tab-pane");
+function setSearchPromptText() {
+  const noResultsMessage = document.createElement("div");
+  noResultsMessage.classList.add("no-results-msg");
+  noResultsMessage.textContent =
+    "Use the search bar above to search for a manga.";
+  resultsList.appendChild(noResultsMessage);
+}
 
-// Add event listeners to tab buttons
+function setFavoritesEmptyText() {
+  const noFavoritesMsg = document.createElement("div");
+  noFavoritesMsg.classList.add("no-results-msg");
+  noFavoritesMsg.textContent =
+    "Explore manga and create a favorites list by clicking the white button in the top left of a manga window.";
+  favoritesList.appendChild(noFavoritesMsg);
+}
+
+// Event listeners for search and favorites features
+searchButton.addEventListener("click", performSearch);
+
+searchInput.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    performSearch();
+  }
+});
+
+searchTypeRadios.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    // If search input field is not empty, perform search
+    if (searchInput.value.trim() !== "") {
+      performSearch();
+    }
+  });
+});
+
+// Tab buttons to switch between favorites and search results
 tabButtons.forEach((tabButton) => {
   tabButton.addEventListener("click", () => {
     const targetId = tabButton.getAttribute("data-target");
@@ -351,22 +398,6 @@ tabButtons.forEach((tabButton) => {
     document.getElementById(targetId).classList.add("active");
   });
 });
-
-function initializeLists(onlyResetFavorites) {
-  if (!onlyResetFavorites) {
-    const noResultsMessage = document.createElement("div");
-    noResultsMessage.classList.add("no-results-msg");
-    noResultsMessage.textContent =
-      "Use the search bar above to search for a manga.";
-    resultsList.appendChild(noResultsMessage);
-  }
-
-  const noFavoritesMsg = document.createElement("div");
-  noFavoritesMsg.classList.add("no-results-msg");
-  noFavoritesMsg.textContent =
-    "Explore manga and create a favorites list by clicking the white button in the top left of a manga window.";
-  favoritesList.appendChild(noFavoritesMsg);
-}
 
 // Listen to click events on the document to remove the "active" class from selected manga
 document.addEventListener("click", (e) => {

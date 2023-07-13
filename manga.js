@@ -1,7 +1,6 @@
 "use strict";
 
-// This class is used for adding a new manga to the map,
-// just to ensure consistency
+// This class is used for creating manga that will be added to map
 class manga {
   constructor(title, author, year, summary, image, coords, locationName) {
     this.image = image;
@@ -16,6 +15,7 @@ class manga {
   }
 }
 
+// All manga should be pushed to this array to be added to map upon initialization
 const mangaList = [];
 
 const hoshiNoSamidare = new manga(
