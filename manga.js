@@ -285,3 +285,87 @@ const thermaeRomae = new manga(
 );
 
 mangaList.push(thermaeRomae);
+
+const silverSpoon = new manga(
+  "Silver Spoon",
+  "Hiromu Arakawa",
+  "2011 - 2019",
+  "Yugo Hachiken, a diligent city boy, enroll in an agricultural school in rural Hokkaido as an escape from the academic pressures of his previous life. Over time, Yugo learns life lessons about farming, food production, animal care, and the realities of agricultural life, forming strong bonds with his classmates and coming to understand and appreciate the relationship between life and food",
+  "manga-covers/silver_spoon_cover.jpg",
+  [43.0032, 143.1],
+  "Obihiro, Japan"
+);
+
+mangaList.push(silverSpoon);
+
+const innocent = new manga(
+  "Innocent",
+  "Shin'ichi Sakamoto",
+  "2013 - 2015",
+  "Set during the French Revolution, this historical drama follows the story of Charles-Henri Sanson, the Royal Executioner of France, and his role in the execution of criminals, dissidents, and most notably, the royal family itself. This compelling series presents the revolution's iconic events and Sanson's personal journey through Sakamoto's stunning and intense visual style.",
+  "manga-covers/innocent_cover.jpg",
+  [48.8566, 2.3522],
+  "Paris, France"
+);
+
+mangaList.push(innocent);
+
+const roseOfVersailles = new manga(
+  "The Rose of Versailles",
+  "Riyoko Ikeda",
+  "1972 - 1973",
+  "Set in the years leading up to the French Revolution, this historical drama follows the life of Lady Oscar, a woman raised as a man to become her father's successor as leader of the Palace Guards. A classic of shoujo manga, its richly detailed depictions of France and the court of Versailles have captivated readers for decades.",
+  "manga-covers/rose_of_versailles_cover.jpg",
+  [48.804865, 2.123353],
+  "Versailles, France"
+);
+
+mangaList.push(roseOfVersailles);
+
+const monkFalco = new manga(
+  "Monk Falco",
+  "Yasuko Aoike",
+  "1991 - Present",
+  "The story follows the protagonist, Monk Falco, a German-Spanish monk, also known as 'Bernardo', who used to be a knight known as the 'Hawk of Navarra'. Despite his desire to serve faithfully as a monk, his past as a knight and his distinctive appearance often lead him into various events that require him to use his skills from his secular life.",
+  "manga-covers/monk_falco_cover.jpg",
+  [42.8125, -1.6458], // Pamplona, Navarre, Spain
+  "Navarre, Spain"
+);
+
+mangaList.push(monkFalco);
+
+const kimbaLion = new manga(
+  "Kimba the White Lion",
+  "Osamu Tezuka",
+  "1950 - 1954",
+  "This classic manga tells the story of Kimba, a young white lion who is destined to become the Emperor of the Jungle, after his father, the previous Emperor, was killed by a human hunter. Throughout the series, Kimba strives to create a society where animals can live in peace alongside humans, facing various threats and challenges along the way.",
+  "manga-covers/kimba_cover.jpg",
+  [-2.3333, 34.8333],
+  "Serengeti, Tanzania"
+);
+
+mangaList.push(kimbaLion);
+
+const kidsOnTheSlope = new manga(
+  "Kids on the Slope",
+  "Yuki Kodama",
+  "2007 - 2012",
+  "In the late 1960s, classical pianist Kaoru Nishimi moves to Kyushu and befriends the delinquent drummer, Sentaro Kawabuchi. Through their shared love for jazz, they navigate the ups and downs of high school life, family, and first loves.",
+  "manga-covers/kids_on_slope_cover.jpg",
+  [33.1799, 129.7159],
+  "Sasebo, Japan"
+);
+
+mangaList.push(kidsOnTheSlope);
+
+const circusDaughterOlga = new manga(
+  "Circus Daughter Olga",
+  "Runrun Yamamoto",
+  "2015 - 2019",
+  "Set in early 20th-century Russia, the story follows Olga, a young girl sold to the Tomsky Circus, who falls in love with Yuri, the son of a wealthy man. To make their forbidden love possible, Olga decides to become a star in the circus.",
+  "manga-covers/circus_olga_cover.jpg",
+  [55.7558, 37.6176], // Moscow, Russia
+  "Moscow, Russia"
+);
+
+mangaList.push(circusDaughterOlga);
