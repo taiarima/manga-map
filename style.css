@@ -245,3 +245,30 @@ h2 {
 .leaflet-popup .leaflet-popup-tip {
   background-color: var(--color-dark--1);
 }
+
+@media screen and (max-width: 1200px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .tab-container {
+    display: none;
+  }
+  .sidebar h1 {
+    font-size: 3rem;
+  }
+
+  .japanese-title {
+    margin-bottom: 0;
+  }
+
+  .sidebar {
+    flex-basis: 0;
+    height: 200px;
+  }
+}
