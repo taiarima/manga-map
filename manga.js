@@ -369,3 +369,75 @@ const circusDaughterOlga = new manga(
 );
 
 mangaList.push(circusDaughterOlga);
+
+const naniwaKinyuden = new manga(
+  "Naniwa Kinyū-den Minami no Teiō",
+  "Yūji Aoki",
+  "1990 - Present",
+  "This manga focuses on Ginji Kusanagi, also known as 'The Emperor of Minami', a self-made man who lends money and collects debts in the Minami (southern) area of Osaka. The story portrays Ginji's life in the complex world of Osaka's lending business, dealing with other financiers, gangsters, and the common people in his unique way.",
+  "manga-covers/naniwa_kinyuden_cover.jpg",
+  [34.65, 135.5], // Osaka, Japan
+  "Osaka, Japan"
+);
+
+mangaList.push(naniwaKinyuden);
+
+const gate7 = new manga(
+  "GATE 7",
+  "CLAMP",
+  "2011 - Present",
+  "The manga series follows Chikahito Takamoto, a high school student who ends up in an alternate dimension in Kyoto. There, he encounters Hana, a child with mysterious powers, and her warriors. Together, they fight dark forces in a mystified version of Kyoto filled with supernatural creatures.",
+  "manga-covers/gate_7_cover.jpg",
+  [35.0116, 135.768], // Kyoto, Japan
+  "Kyoto, Japan"
+);
+
+mangaList.push(gate7);
+
+const barefootGen = new manga(
+  "Barefoot Gen",
+  "Keiji Nakazawa",
+  "1973 - 1985",
+  "Barefoot Gen is a story about the life of Gen, a young boy in Hiroshima, based on the author's own experiences as a Hiroshima survivor. The manga covers the time before, during, and after the atomic bomb, depicting the horrors of the event and its aftermath, while also promoting a message of peace.",
+  "manga-covers/barefoot_gen_cover.jpg",
+  [34.3927, 132.4596], // Hiroshima, Japan
+  "Hiroshima, Japan"
+);
+
+mangaList.push(barefootGen);
+
+const haikyu = new manga(
+  "Haikyu!!",
+  "Haruichi Furudate",
+  "2012 - 2020",
+  "Haikyu!! is a sports-themed manga about Shōyō Hinata, a boy determined to become a great volleyball player despite his small stature. The story follows his and his team's growth and development as they strive to become the best in Japan, competing in various matches and tournaments.",
+  "manga-covers/haikyuu_cover.jpg",
+  [38.2682, 140.8694], // Sendai, Japan
+  "Sendai, Japan"
+);
+
+mangaList.push(haikyu);
+
+const vinlandSaga = new manga(
+  "Vinland Saga",
+  "Makoto Yukimura",
+  "2005 - ongoing",
+  "Vinland Saga is a historical manga set in 11th-century England during the age of the Vikings. It tells the story of Thorfinn, a young Viking warrior who seeks to avenge his father's death by a mercenary leader and his journey that leads him to the far-off land of Vinland.",
+  "manga-covers/vinland_saga_cover.jpg",
+  [64.9631, -19.0208], // Approximate coordinates for Vinland, speculated to be in present-day Iceland
+  "Iceland"
+);
+
+mangaList.push(vinlandSaga);
+
+const littleLotus = new manga(
+  "Little Lotus",
+  "Kio Nishihara",
+  "2018 - ongoing",
+  "On the verge of graduating from university, Shunsuke Sakurai finds himself in Ho Chi Minh City, Vietnam due to an unexpected series of events. There, he meets a young girl named Sen, who is his cousin. Shunsuke thinks about what he can do to help Sen, who has become orphaned, and comes to a conclusion. This is the beginning of their delicious relationship, highlighted by the colorful and gentle Vietnamese cuisine.",
+  "manga-covers/little_lotus_cover.jpg",
+  [10.762622, 106.660172], // Ho Chi Minh City, Vietnam
+  "Ho Chi Minh City, Vietnam"
+);
+
+mangaList.push(littleLotus);
