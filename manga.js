@@ -441,3 +441,137 @@ const littleLotus = new manga(
 );
 
 mangaList.push(littleLotus);
+
+const kuboIbuki = new manga(
+  "Kūbo Ibuki (Aircraft Carrier Ibuki)",
+  "Kawaguchi Kaiji and Sato Koichi",
+  "2014 - present",
+  "Set in the near future of 20XX, Kūbo Ibuki focuses on a political crisis around the Senkaku Islands. A suspected operative posing as a castaway lands on Minami Kojima, one of the islands, claiming it as Chinese territory and triggering the 'Senkaku Islands Landing Incident'. As tensions escalate with clashes between the Japan Coast Guard and Chinese vessels, and threatening actions towards Japan's Self-Defense Forces, the Japanese government decides to expedite the 'Pegasus Plan', which involves the commissioning of a new type of escort ship and the formation of a new escort fleet, despite partly yielding to China's actions.",
+  "manga-covers/kubo_ibuki_cover.jpg",
+  [25.7452, 123.4756],
+  "Senkaku Islands"
+);
+
+mangaList.push(kuboIbuki);
+
+const gundam0083 = new manga(
+  "Mobile Suit Gundam 0083: Stardust Memory - Operation Stardust",
+  "Hiroki Kase and Yoshiyuki Tomino",
+  "2000 - 2001",
+  "Three years after the end of the One Year War, the Earth Federation Army orders a Gundam development project from the military-industrial complex 'Anaheim Electronics'. The first and second prototype Gundams are brought to the Torrington Base in Australia for performance testing.",
+  "manga-covers/gundam_0083_cover.jpg",
+  [-25.2744, 133.7751],
+  "Australia"
+);
+
+mangaList.push(gundam0083);
+
+const aoNoMaharaja = new manga(
+  "Ao no Maharaja (Blue Maharaja)",
+  "Tomoko Kamisaka",
+  "1990 - 1993",
+  "Ao no Maharaja is an adventure manga by Tomoko Kamisaka. The story revolves around Raja, a young man who embarks on a thrilling journey across Asia, from Japan to India, to reclaim his rightful place as the Maharaja. Through this journey, Raja encounters various challenges and experiences diverse cultures, all while slowly uncovering the secrets of his lineage and destiny.",
+  "manga-covers/ao_no_maharaja_cover.jpg",
+  [27.0238, 74.2179],
+  "Rajasthan, India"
+);
+
+mangaList.push(aoNoMaharaja);
+
+const redRiver = new manga(
+  "Sora wa Akai Kawa no Hotori (Red River)",
+  "Chie Shinohara",
+  "1995 - 2002",
+  "Red River, also known as Anatolia Story, is a historical fantasy manga by Chie Shinohara. The story features Yuri Suzuki, a modern-day Japanese teen girl, who gets pulled through time to ancient Hittite Empire in Anatolia. She was summoned by Queen Nakia who means to use Yuri as a human sacrifice. Yuri's blood is the key element needed in placing a curse upon the princes of the land so they will perish, leaving Nakia's son as the sole heir to the throne.",
+  "manga-covers/red_river_cover.jpg",
+  [38.9637, 35.2433],
+  "Ankara, Turkey"
+);
+
+mangaList.push(redRiver);
+
+const aoiHorus = new manga(
+  "Aoi Horus no Hitomi - Dansou no Joou no Monogatari (Blue Horus' Eye - The Story of the Cross-Dressing Queen)",
+  "Chie Inudoh",
+  "2014 - 2021",
+  "Blue Horus' Eye - The Story of the Cross-Dressing Queen is a historical drama manga by Chie Inudoh. The narrative revolves around Hatshepsut, one of the most powerful women in the ancient world. She was the fifth pharaoh of the Eighteenth Dynasty of Egypt and she is generally regarded by Egyptologists as one of the most successful pharaohs. This manga is her fascinating story as she ascends the throne and leads Egypt to prosperity, all while cross-dressing as a man.",
+  "manga-covers/aoi_horus_cover.jpg",
+  [26.8206, 30.8025],
+  "Egypt"
+);
+
+mangaList.push(aoiHorus);
+
+const dororo = new manga(
+  "Dororo",
+  "Osamu Tezuka",
+  "1967 - 1968",
+  "Dororo is a classic manga by the renowned Osamu Tezuka. The plot focuses on Hyakkimaru, a ronin who is on a quest to recover 48 parts of his body that were traded to demons by his father for power. He is accompanied by Dororo, a young thief. As Hyakkimaru regains each body part, he also gains a new ability or sense, bringing him closer to becoming fully human.",
+  "manga-covers/dororo_cover.jpg",
+  [36.5947, 136.6256],
+  "Ishikawa Prefecture, Japan"
+);
+
+mangaList.push(dororo);
+
+const myBrideIsAMermaid = new manga(
+  "My Bride is a Mermaid",
+  "Tahiko Kimura",
+  "2002 - 2010",
+  "My Bride is a Mermaid is a comedy manga by Tahiko Kimura. The story follows Nagasumi Michishio, a young man who is saved from drowning by a mermaid named Sun Seto. According to mermaid law, however, either the mermaid who has revealed herself or the human who has learned of a mermaid's existence must die. The only solution is for Nagasumi to marry Sun and keep her secret safe, leading to all sorts of hilarious and awkward situations.",
+  "manga-covers/my_bride_is_a_mermaid_cover.jpg",
+  [34.3401, 134.0434],
+  "Kagawa Prefecture, Japan"
+);
+
+mangaList.push(myBrideIsAMermaid);
+
+const taiyoNoMakibao = new manga(
+  "Taiyō no Makibaō",
+  "Tsutomu Takahashi",
+  "2007 - 2017",
+  "Set in the Kochi Racetrack in Kochi City, Taiyō no Makibaō features a unique blend of seemingly absurd and unrealistic styles, while simultaneously drawing out various societal issues and problems within the horse racing world. Notably featuring crude humor, the story follows the protagonist, Makibaō, from his active racing days to retirement.",
+  "manga-covers/taiyo_no_makibao_cover.jpg",
+  [33.5597, 133.5311],
+  "Kochi City, Japan"
+);
+
+mangaList.push(taiyoNoMakibao);
+
+const oneTwoNoSanshiro = new manga(
+  "1-2 no Sanshiro",
+  "Makoto Kobayashi",
+  "1978 - 1983",
+  "Set in the fictional city of Shigata in New Kagata Prefecture, a place modeled after Niigata City, Niigata Prefecture. This unique setting reappears in many of the author's subsequent works.",
+  "manga-covers/1-2_no_sanshiro_cover.jpg",
+  [37.9161, 139.0364],
+  "Niigata Prefecture, Japan"
+);
+
+mangaList.push(oneTwoNoSanshiro);
+
+const tsurikichiSanpei = new manga(
+  "Tsurikichi Sanpei",
+  "Takao Yaguchi",
+  "1973 - 1983",
+  "Tsurikichi Sanpei is a story of a young boy named Sanpei who loves fishing. His expertise and adventurous spirit often lead him to incredible fishing expeditions and wild adventures in nature.",
+  "manga-covers/tsurikichi_sanpei_cover.jpg",
+  [39.72, 140.1025],
+  "Akita Prefecture, Japan"
+);
+
+mangaList.push(tsurikichiSanpei);
+
+const fushigiYuugiGenbuKaiden = new manga(
+  "Fushigi Yuugi: Genbu Kaiden",
+  "Yu Watase",
+  "2003 - 2013",
+  "The story follows a girl named Takiko Okuda who is brought into a book where she becomes the Priestess of Genbu. She must gather the Seven Celestial Warriors of the north to summon the beast god Genbu and make a wish.",
+  "manga-covers/fushigi_yuugi_genbu_kaiden_cover.jpg",
+  [39.702, 141.1545],
+  "Morioka, Iwate Prefecture, Japan"
+);
+
+mangaList.push(fushigiYuugiGenbuKaiden);
+
+console.log(mangaList.length);
